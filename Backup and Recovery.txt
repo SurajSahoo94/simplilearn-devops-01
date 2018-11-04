@@ -1,0 +1,71 @@
+Create a folder eg /myfolder for practice
+
+[root@client24~#mkdir /myfolder 
+
+[root@client24~#cd /myfolder
+
+Now create some files and folders inside it
+#mkdir dir1
+#touch 1 songs tom_file
+#is
+1 dir1 songs tom_file
+
+
+Use the tar command to tape archieve the folder.
+#tar -cvf /opt/myfolder.tar  /myfolder
+         ####output####
+tar:removing leading`/'from member names
+/myfolder/
+/myfolder/dir1/
+/myfolder/tom_file
+/myfolder//songs
+/myfolder/1
+#is-i
+
+
+To create a tar file with zip
+#tar   -cvzf  /opt/myfolder.tar.gz   /myfolder
+         ####output####
+tar:removing leading`/'from member names 
+/myfolder/
+/myfolder/dir1/
+/myfolder/tom_file
+/myfolder//songs
+/myfolder/1 
+   -rw-r--r--1root251jul 13 03:09 myfolder.tar.gz
+ 
+
+To view the contents of the tar file without extracting
+#tar -tvzf/opt/myfolder.tar.gz
+drwxrwxrwx root/root  0 2008-07-13 01:31:34 myfolder/
+drwxr-xr-x root/root  0 2008-07-13 01:28:39 myfolder/dir1/
+-rw-r--r--tom/joy   12  2008-07-13 01-29:51 myfolder/tom_file 
+-rw-rw-rw-root/root   0 2008-07-13 00:06:35 myfolder//songs
+-rw-r--r--tom/joy     0 2008-07-13 01:31:34 myfolder/1
+
+
+To remove the folder
+#rm  -r /myfolder
+rm:descend into directory `/myfolder'?y
+rm:remove directory`/myfolder/dir1'?y
+rm:remove regular file`/myfolder/tom_file'?y
+rm:remove regular empty file `/myfolder//songs`?y
+rm:remove regular empty file `/myfolder/1'?y
+rm:remove directory `/myfolder'?y
+#cd/
+
+
+To extract the tar file.Or recovery the data
+#tar -xvzf /opt/myfolder.tar.gz
+myfolder/
+myfolder/dir1/
+myfolder/tom_file
+myfolder//songs
+myfolder/1
+
+After extracting see the contents inside the folder.
+#is /myfolder/
+1 dir1/songs tom_file
+
+
+

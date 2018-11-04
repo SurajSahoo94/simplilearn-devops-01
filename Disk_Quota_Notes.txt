@@ -1,0 +1,419 @@
+Disk Quotas:
+
+1. Create 4 users as below:
+
+A. John with the default properties
+B. Peter whose primary group is sales
+C. Tom whose primary group is sales
+D. Rocky whose secondary group is sales
+
+2. Create a partition and mount it with users and group quotas enabled.
+3. Apply quotas to the user John and the group sales and check.
+
+Create a group:
+
+# groupadd sales
+
+Create users:
+
+# useradd john
+# useradd -g sales peter
+# useradd -g sales tom
+# useradd -G sales rocky
+
+Create partition using fdisk:
+
+# fdisk /dev/sdb
+
+Mount the partition with user and group quotas enabled:
+Syntax: mount <option> <arguments> <partition_name> <mount_point_dir> 
+
+Now, mount /dev/sdb7 partition on directory "/mnt-disk-quota" with the user and gorup quotas enabled.
+
+# mkdir /mnt-disk-quota
+
+Apply full permissions on the mount point:
+
+# chmod 777 /mnt-disk-quota
+
+# mount -o userquota,grpquota /dev/sdb7 /mnt-disk-quota
+
+To view the mounted partitions:
+
+# mount
+
+Create the quota database files:
+
+Syntax: quotacheck <option> <mount point>
+
+Options:
+-c	= Create
+-u	= User
+-g      = Group
+-v      = Verbose
+
+Example:
+# quotacheck -cugv /mnt-disk-quota
+
+Check if the quota database file aquota.group and aquota.user has been created:
+# ls /mnt-disk-quota
+
+Check the quota status:
+Syntax: quotaon <option> <partition>
+
+# quotaon -p /dev/sdb7 
+
+To turn on quotas:
+
+Syntax: quotaon <partition>
+
+# quotaon /dev/sdb7
+
+To check status:
+
+# quotaon -p /dev/sdb7
+
+Apply quotas for the user John:
+Exmaple:
+User John can create 5 files or directories after which he gets a warning message and he should not be allowed to create more than 7 files or directories:
+
+# edquota -u john
+
+Note: Login as john and try doing the test.
+
+Apply quotas for the sales group:
+Example:
+The primary members of the group sales can collectively create 5 files or directories after which they get a warning message and they should not be allowed to create more than 7 files or directories:
+
+# edquota -g sales
+
+Note: Login with the peter and tom and do the test.
+
+**************************************************************************
+
+
+Step 1: Create a partition:
+
+Step 2: update the kernel & Format the partition:
+
+# mkfs.ext4 /dev/sdb6
+
+Step 3: Create directory 
+
+Step 4: Mount the partition on the directory with quotas enabled
+
+mount <option> <arguments> <partition_name> <mount_point_directory>
+
+Step 5: Now, mount the partition with user and group quota on directory:
+
+mount -o usrquota,grpquota /dev/sdb2 /disk-quota/
+
+[root@reposerver ~]# mount -o usrquota,grpquota /dev/sdb6 /diskquota/
+
+[root@reposerver ~]# df -TH | tail -1
+/dev/sdb6      ext4      9.2M  177k  8.2M   3% /diskquota
+
+
+Step 6: Give full permissions to the mount_point
+
+Step 7: Create the quota database files.
+
+Syntax: quotacheck <option> <mount_point_dir>
+# quotacheck -cugv /disk-quota/
+
+Options: 
+-c = Create 
+-u = User
+-g = Group
+-v = Verbose
+
+Error:
+
+[root@localhost ~]# quotacheck -cugv /disk-quota/
+quotacheck: Your kernel probably supports journaled quota but you are not using it. Consider switching to journaled quota to avoid running quotacheck after an unclean shutdown.
+quotacheck: Scanning /dev/sdb6 [/disk-quota/] done
+quotacheck: Cannot stat old user quota file: No such file or directory
+quotacheck: Cannot stat old group quota file: No such file or directory
+quotacheck: Cannot stat old user quota file: No such file or directory
+quotacheck: Cannot stat old group quota file: No such file or directory
+quotacheck: Checked 2 directories and 0 files
+quotacheck: Cannot create new quotafile /disk-quota/aquota.user.new: Permission denied
+quotacheck: Cannot initialize IO on new quotafile: Permission denied
+quotacheck: Cannot create new quotafile /disk-quota/aquota.group.new: Permission denied
+quotacheck: Cannot initialize IO on new quotafile: Permission denied
+
+Troubleshooting steps:
+
+[root@localhost ~]# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /selinux
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy version:                 24
+Policy from config file:        targeted
+
+[root@localhost ~]# vim /etc/selinux/config
+[root@localhost ~]# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /selinux
+Current mode:                   enforcing
+Mode from config file:          permissive
+Policy version:                 24
+Policy from config file:        targeted
+
+[root@localhost ~]# setenforce permissive
+
+[root@localhost ~]# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /selinux
+Current mode:                   permissive
+Mode from config file:          permissive
+Policy version:                 24
+Policy from config file:        targeted
+
+********************************************************
+Step 7.1: Restart the server
+
+Step 7.2: Repeat the step 5 again i.e. create the quota database files:
+
+Syntax: quotacheck <option> <mount_point_dir>
+# quotacheck -cugv /disk-quota/
+
+
+[root@localhost ~]# mount -o usrquota,grpquota /dev/sdb6 /disk-quota/
+
+[root@localhost ~]# quotaon -p /dev/sdb6
+group quota on /disk-quota/ (/dev/sdb6) is off
+user quota on /disk-quota/ (/dev/sdb6) is off
+
+[root@localhost ~]# quotacheck -cugv /disk-quota/
+quotacheck: Your kernel probably supports journaled quota but you are not using it. Consider switching to journaled quota to avoid running quotacheck after an unclean shutdown.
+quotacheck: Scanning /dev/sdb6 [/disk-quota/] done
+quotacheck: Checked 2 directories and 2 files
+
+[root@localhost ~]# ls -R /disk-quota//
+/disk-quota//:
+aquota.group  aquota.user  lost+found
+
+/disk-quota//lost+found:
+
+
+Step 7: Check the quota status:
+Syntax: quotaon <option> <paritition>
+# quotaon -p /dev/sdb6
+
+[root@localhost ~]# quotaon -p /dev/sdb6
+group quota on /disk-quota/ (/dev/sdb6) is off
+user quota on /disk-quota/ (/dev/sdb6) is off
+
+Step 8: Turn on the quotas:
+Syntax: quotaon <partition>
+
+[root@localhost ~]# quotaon /dev/sdb6
+
+Check the status:
+
+[root@localhost ~]# quotaon -p /dev/sdb6
+group quota on /disk-quota/ (/dev/sdb6) is on
+user quota on /disk-quota/ (/dev/sdb6) is on
+
+
+Step 9: Apply quotas for users:
+Example: 
+1. Create a user
+2. He/she should create only 5 files or directories 
+and after that he/she should get the warning message and 
+it should not be allowed to create more than 7 files or directories.
+
+Apply the quotas on a partition:
+Syntax: quotaon <mount_point>
+
+Assigning quotas to users or groups:
+Syntax: edquota -u <user_name>
+
+[root@localhost ~]# edquota -u che
+edquota: Bad format:
+  /dev/sdb6                        0          0          0         o        5        7
+
+edquota: Cannot read quotas from file.
+
+Step 10: Login with che and do the test.
+
+
+If any error:
+[root@localhost sony-vaio]# quotaoff /disk-quota//
+
+[root@localhost sony-vaio]# quotaon -p /disk-quota//
+group quota on /disk-quota/ (/dev/sdb6) is off
+user quota on /disk-quota/ (/dev/sdb6) is off
+
+[root@localhost sony-vaio]# quotaon /dev/sdb6
+
+[root@localhost sony-vaio]# quotaon -p /dev/sdb6
+group quota on /disk-quota/ (/dev/sdb6) is on
+user quota on /disk-quota/ (/dev/sdb6) is on
+
+[root@localhost sony-vaio]# edquota -u che
+edquota: WARNING - /dev/sdb6: cannot change current block allocation
+edquota: WARNING - /dev/sdb6: cannot change current inode allocation
+[root@localhost sony-vaio]# edquota -u che
+
+[root@localhost ~]# edquota -u che
+edquota: Bad format:
+  /dev/sdb6                        0          0          0         o        5        7
+
+********************************************************************
+
+
+Step 1: Create a partition:
+
+Step 2: Format the partition:
+
+Step 3: Create directory
+
+Step 4: Mount the partition on the directory with quotas enabled
+
+mount <option> <arguments> <partition_name> <mount_point_directory>
+
+Step 5: Give full permissions to the mount_point
+
+Step 6: Create the quota database files.
+
+Syntax: quotacheck <option> <mount_point_dir>
+# quotacheck -cugv /disk-quota/
+
+Options: 
+-c = Create 
+-u = User
+-g = Group
+-v = Verbose
+
+Error:
+
+[root@localhost ~]# quotacheck -cugv /disk-quota/
+quotacheck: Your kernel probably supports journaled quota but you are not using it. Consider switching to journaled quota to avoid running quotacheck after an unclean shutdown.
+quotacheck: Scanning /dev/sdb6 [/disk-quota/] done
+quotacheck: Cannot stat old user quota file: No such file or directory
+quotacheck: Cannot stat old group quota file: No such file or directory
+quotacheck: Cannot stat old user quota file: No such file or directory
+quotacheck: Cannot stat old group quota file: No such file or directory
+quotacheck: Checked 2 directories and 0 files
+quotacheck: Cannot create new quotafile /disk-quota//aquota.user.new: Permission denied
+quotacheck: Cannot initialize IO on new quotafile: Permission denied
+quotacheck: Cannot create new quotafile /disk-quota//aquota.group.new: Permission denied
+quotacheck: Cannot initialize IO on new quotafile: Permission denied
+
+Troubleshooting steps:
+
+[root@localhost ~]# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /selinux
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy version:                 24
+Policy from config file:        targeted
+
+[root@localhost ~]# vim /etc/selinux/config
+[root@localhost ~]# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /selinux
+Current mode:                   enforcing
+Mode from config file:          permissive
+Policy version:                 24
+Policy from config file:        targeted
+
+[root@localhost ~]# setenforce permissive
+
+[root@localhost ~]# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /selinux
+Current mode:                   permissive
+Mode from config file:          permissive
+Policy version:                 24
+Policy from config file:        targeted
+
+********************************************************
+Step 6.1: Restart the server
+
+Step 6.2: Repeat the step 6 again i.e. create the quota database files:
+
+Syntax: quotacheck <option> <mount_point_dir>
+# quotacheck -cugv /disk-quota/
+
+
+[root@localhost ~]# mount -o usrquota,grpquota /dev/sdb6 /disk-quota/
+[root@localhost ~]# quotacheck -cugv /disk-quota/
+quotacheck: Your kernel probably supports journaled quota but you are not using it. Consider switching to journaled quota to avoid running quotacheck after an unclean shutdown.
+quotacheck: Scanning /dev/sdb6 [/disk-quota/] done
+quotacheck: Checked 2 directories and 2 files
+[root@localhost ~]# ls -R /disk-quota//
+/disk-quota//:
+aquota.group  aquota.user  lost+found
+
+/disk-quota//lost+found:
+
+
+Step 7: Check the quota status:
+Syntax: quotaon <option> <paritition>
+# quotaon -p /dev/sdb6
+
+[root@localhost ~]# quotaon -p /dev/sdb6
+group quota on /disk-quota/ (/dev/sdb6) is off
+user quota on /disk-quota/ (/dev/sdb6) is off
+
+Step 8: Turn on the quotas:
+Syntax: quotaon <partition>
+
+[root@localhost ~]# quotaon /dev/sdb6
+
+Check the status:
+
+[root@localhost ~]# quotaon -p /dev/sdb6
+group quota on /disk-quota/ (/dev/sdb6) is on
+user quota on /disk-quota/ (/dev/sdb6) is on
+
+
+Step 9: Apply quotas for users:
+Example: 
+1. Create a user
+2. He/she should create only 5 files or directories 
+and after that he/she should get the warning message and 
+it should not be allowed to create more than 7 files or directories.
+
+Apply the quotas on a partition:
+Syntax: quotaon <mount_point>
+
+Assigning quotas to users or groups:
+Syntax: edquota -u <user_name>
+
+[root@localhost ~]# edquota -u che
+edquota: Bad format:
+  /dev/sdb6                        0          0          0         o        5        7
+
+edquota: Cannot read quotas from file.
+
+Step 10: Login with che and do the test.
+
+
+If any error:
+[root@localhost sony-vaio]# quotaoff /disk-quota//
+
+[root@localhost sony-vaio]# quotaon -p /disk-quota//
+group quota on /disk-quota/ (/dev/sdb6) is off
+user quota on /disk-quota/ (/dev/sdb6) is off
+
+[root@localhost sony-vaio]# quotaon /dev/sdb6
+
+[root@localhost sony-vaio]# quotaon -p /dev/sdb6
+group quota on /disk-quota/ (/dev/sdb6) is on
+user quota on /disk-quota/ (/dev/sdb6) is on
+
+[root@localhost sony-vaio]# edquota -u che
+edquota: WARNING - /dev/sdb6: cannot change current block allocation
+edquota: WARNING - /dev/sdb6: cannot change current inode allocation
+[root@localhost sony-vaio]# edquota -u che
+
+[root@localhost ~]# edquota -u che
+edquota: Bad format:
+  /dev/sdb6                        0          0          0         o        5        7
+

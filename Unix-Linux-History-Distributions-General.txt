@@ -1,0 +1,134 @@
+****************************************************************
+About Operating Systems:
+
+An operating System (OS) is an intermediary between users and computer hardware.
+
+It provides users an environment in which a user can execute programs conveniently and efficiently.
+
+In technical terms, It is a software which manages hardware. An operating System controls the
+allocation of resources and services such as memory, processors, devices and information.
+
+Definition
+An operating system is a program that acts as an interface between the user and the computer
+hardware and controls the execution of all kinds of programs.
+
+****************************************************************
+Linux isn�t a complete operating system � it�s just a kernel. Linux distributions take the
+Linux kernel and combine it with other free software to create complete packages.
+
+There are many different Linux distributions out there.
+
+If you want to �install Linux,� you�ll need to choose a distribution. You could also use Linux
+From Scratch to compile and assemble your own Linux system from the ground up, but that�s a huge amount of work.
+
+
+�Linux� Isn�t Just Linux: 6 Pieces of Software That Make Up Linux Systems
+
+Linux distributions aren�t just the Linux kernel.
+They all contain other critical software,
+like the
+1. Grub bootloader,(GUI with CUI & Only CUI)
+2. Bash shell,
+3. GNU shell utilities,
+4. daemons,
+5. X.org graphical server,
+6. a desktop environment, and more.
+7. Linux Kernel(CUI)
+
+Linus Torvalds : GNU
+
+****************************************************************
+# Functions of an operating System:
+1. Memory Management
+2. Processor Management
+3. Device Management
+4. File Management
+5. Security
+6. Control over system performance
+7. Job accounting
+8. Error detecting aids &
+9. Coordination between other software and users
+****************************************************************
+Types of O/S:
+
+1. Single-User & Single-Task
+Ex: Dos  CUI
+2. Single-User & Multi-Task   xp, w-vista,w-7,w-8,w-10 = Laptop or Desktop Hardware not server
+Ex: Windows GUI+CUI
+3. Multi-User & Multi-Task
+Ex:
+Unix  CUI + GUI recently its started.
+Linux CUI + GUI
+****************************************************************
+Versions of O/S: Client & Server versions:
+Client & Desktop:
+Single User: Windows & DOS
+Multiple Users & Task : Unix & Linux
+
+Server: Multiple Users & Task : Windows, DOS, Unix & Linux
+****************************************************************
+History of Unix & Linux
+
+Unix:
+1969     The Beginning     The history of UNIX starts back in 1969, when Ken Thompson, Dennis Ritchie and others
+started working on the "little-used PDP-7 in a corner" at Bell Labs and what was to become UNIX.
+
+Working with the Massachusetts Institute of Technology, AT&T Bell Labs was co-developing a massive, monolithic operating system called Multics.
+
+1971     First Edition     It had a assembler for a PDP-11/20, file system, fork(), roff and ed. It was used for text processing of patent documents.
+In 1972, Unix was rewritten in the higher-level language C programming language.
+1973     Fourth Edition     It was rewritten in C. This made it portable and changed the history of OS's.
+
+Written in        : C,  & assembly language
+Developer         : Ken Thompson, Dennis Ritchie, Brian Kernighan, and other members
+****************************************************************
+Linux:
+Linux (lee'nuhks/ or /li'nuks/,_not_/li:'nuhks) is a free and open-source operating system developed by Linus Torvalds and friends that was first announced August 25, 1991. The Linux kernel runs on numerous different platforms including the Intel and Alpha platform and is available under the GNU General Public License.
+
+Kernel Version : 0.01
+Latest Version : 4.4 was released at 10 January 2016.
+Written in     : C
+Developer      : Linus Torvalds and thousands of collaborators
+
+****************************************************************
+Linux Distributions:
+1. Redhat   : RHEL, Fedora & Centos
+2. Suse Inc : Suse Linux & Open Suse
+3. Debian   : Ubuntu
+
+Unix Distributions:
+1. AIX 		by IBM
+2. HP-UX 	by Hewlett-Packard Company
+3. Solaris 	by Sun Microsystems (Oracle)
+4. BSD/OS � 	the Berkeley Software Distribution (BSD)
+****************************************************************
+Following are the key features of the linux operating Systems:
+
+1. Multitasking : Several programs running at the same time
+2. Multiuser    : Several users on the same machine at the same time.(No 2-user licenses required)
+3. Multiplatform: Runs on many different CPU's, not just intel
+4. Multiprocessor/Multithreading : It has native kernel support for multiple independent
+threads of control within a single process memory space.
+It has memory protection between processes, so that one program can't bring the whole system down..
+5. Open Source  : It means we can freely download O/S along with O/S Source code.
+6. Source code  : It is nothing but a programming language.
+7. Portability  : It means it can support any kind of Hardware Architechture
+8. Scalability  : It means the same O/S we can use it as a Desktop edition, Server edition,
+& Client edition.
+9. Firewall     : In Linux we have two inbuild firewall, 1. IP tables and 2. Selinux
+
+****************************************************************
+Desktop Environments of Linux:
+1. Gnome (Window manager called Metacity) & 2. KDE (Kwin)
+Both can install and use as per the requirement.
+# To access GNOME Desktop : gnome-terminal
+
+General Info:
+1. ~        = User home directory sign
+2. #        = Super user, Root user or Admin when sign-in
+3. $        = Normal USER
+4. -        = File
+5. d        = Directory
+6. l 	    = link file or directory
+7. .        = Hidden File or Directory
+****************************************************************

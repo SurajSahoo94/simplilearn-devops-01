@@ -1,0 +1,26 @@
+To change the System date and time:
+***********************************
+
+[root@masterdns ~]# date
+Thu Mar 31 06:28:47 PDT 2016
+
+Export the environment variable:
+********************************
+[root@masterdns ~]# export TZ=Asia/Calcutta
+
+Check the environment variable value:
+*************************************
+[root@masterdns ~]# echo $TZ
+Asia/Calcutta
+
+Check the data and time:
+************************
+[root@masterdns ~]# date 
+Thu Mar 31 19:01:58 IST 2016
+
+If not please change the date & time:
+*************************************
+[root@masterdns ~]# date -s "03/31/2016 19:01:58"
+Thu Mar 31 19:01:58 IST 2016
+
+

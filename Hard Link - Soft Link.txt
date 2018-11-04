@@ -1,0 +1,175 @@
+Links:
+
+1. A link is not a file but, instead is second name for a file.
+2. When a file had two links, it is not physically present at 
+two places, but can be referred to by either of the names.
+3. If any changes to any one of these file, 
+then those changes will affect the both files.
+
+File links are two types:
+1. Hard Link
+2. Soft Link or Symbolic link
+3. Unlink
+
+1. Hard Link: A file can have as many as names as you want 
+to give it,but the only thing that is common to all of them 
+they all have the same inode number.
+
+***********************************************************
+Syntax: ln <source file> <target file>
+***********************************************************
+Example: ln venkat link_venkat
+
+[root@localhost ~]# ls -il *venkat
+306143 -rw-r--r--. 2 root root 116 Feb 29 20:23 link_venkat
+306143 -rw-r--r--. 2 root root 116 Feb 29 20:23 venkat
+
+[root@localhost ~]# wc venkat
+  3   6 116 venkat
+
+[root@localhost ~]# wc link_venkat
+  3   6 116 link_venkat
+
+[root@localhost ~]# cat >> link_venkat
+Test of hardlink.
+
+[root@localhost ~]# wc venkat
+  4   9 134 venkat
+
+[root@localhost ~]# wc link_venkat
+  4   9 134 link_venkat
+
+Limitations:
+1. You can not link a directory even within the same filesystem.
+
+***********************************************************
+2. Soft Link:
+These soft links were first introduced by BSD with Unix. 
+
+Syntax: ln -s <source file> <target file>
+Option: -s (Symbolic link)
+
+[root@localhost ~]# ln -s redhat.txt link_redhat.txt
+
+[root@localhost ~]# ls -l 
+lrwxrwxrwx. 1 root root        10 Mar  3 07:03 link_redhat.txt -> redhat.txt
+-rw-r--r--. 1 root root         9 Feb 26 01:25 redhat.txt
+
+[root@localhost ~]# ls -i link_redhat.txt
+306183 link_redhat.txt
+
+[root@localhost ~]# ls -i redhat.txt
+302888 redhat.txt
+
+Note: 
+1. We can identify symbolic links by the character "l".
+2. It supports direcoty linking as well.
+
+[root@localhost ~]# ln -s dell hp
+
+[root@localhost ~]# ls -ld dell/
+drwxr-xr-x. 6 root root 4096 Feb 29 08:36 dell/
+
+[root@localhost ~]# ls -ld hp
+lrwxrwxrwx. 1 root root 4 Mar  3 07:09 hp -> dell
+
+[root@localhost ~]# ls -l
+306138 drwxr-xr-x. 6 root root      4096 Feb 29 08:36 dell
+315493 lrwxrwxrwx. 1 root root         4 Mar  3 07:09 hp -> dell
+
+Note: In the above two different "inode" numbers for both the directories in softlink.
+
+[root@localhost ~]# cd dell/
+[root@localhost dell]# ls -i operating_system1
+306185 operating_system1
+
+[root@localhost hp]# wc operating_system1
+0 0 0 operating_system1
+
+[root@localhost hp]# cat > operating_system1
+Soft link test.
+ln -s <file name> <destination file>
+
+[root@localhost hp]# wc operating_system1
+ 2  9 53 operating_system1
+
+[root@localhost hp]# ls -i operating_system1
+306185 operating_system1
+
+[root@localhost hp]# cd ../dell/
+[root@localhost dell]# ls -i operating_system1
+306185 operating_system1
+
+[root@localhost dell]# wc operating_system1
+ 2  9 53 operating_system1
+
+Note: In the above example "inode number is same for both directory files, 
+if we add anything to any one file, then other file is updating with the same details.
+
+Cross checked with the linked directory file and append, inode number, etc:
+***************************************************************************
+[root@localhost ~]# ls -il dell/operating_system2
+306187 -rw-r--r--. 1 root root 0 Feb 29 08:36 dell/operating_system2
+
+[root@localhost ~]# ls -il hp/operating_system2
+306187 -rw-r--r--. 1 root root 0 Feb 29 08:36 hp/operating_system2
+
+[root@localhost ~]# cat > dell/operating_system2
+Soft link test.
+
+[root@localhost ~]# ls -il dell/operating_system2
+306187 -rw-r--r--. 1 root root 16 Mar  3 07:22 dell/operating_system2
+
+[root@localhost ~]# cat hp/operating_system2
+Soft link test.
+
+[root@localhost ~]# cat dell/operating_system2
+Soft link test.
+
+[root@localhost ~]# wc dell/operating_system2
+ 1  3 16 dell/operating_system2
+
+[root@localhost ~]# wc hp/operating_system2
+ 1  3 16 hp/operating_system2
+***********************************************************
+3. unlink : The name itself indicates that it is used for removing the links from the files 
+and the directories.
+It helps in removing the links of files & directories either it could be a "soft link" or
+ "hard link".
+
+Syntax: unlink <option> <file name>
+
+To remove "Hard link" files check the files:
+********************************************
+[root@localhost ~]# ls -il venkat
+306143 -rw-r--r--. 2 root root 134 Mar  3 06:49 venkat
+
+[root@localhost ~]# ls -il link_venkat
+306143 -rw-r--r--. 2 root root 134 Mar  3 06:49 link_venkat
+
+Remove hard link:
+*****************
+[root@localhost ~]# unlink link_venkat
+
+Check the file status:
+**********************
+[root@localhost ~]# ls -l link_venkat
+ls: cannot access link_venkat: No such file or directory
+
+To remove "Soft link", check the soft link files:
+*************************************************
+List the soft link files or directories:
+
+[root@localhost ~]# ls -il redhat.txt
+302888 -rw-r--r--. 1 root root 9 Feb 26 01:25 redhat.txt
+
+[root@localhost ~]# ls -il link_redhat.txt
+306183 lrwxrwxrwx. 1 root root 10 Mar  3 07:03 link_redhat.txt -> redhat.txt
+
+Remove the soft link:
+[root@localhost ~]# unlink link_redhat.txt
+
+Check the file status:
+[root@localhost ~]# ls -il link_redhat.txt
+ls: cannot access link_redhat.txt: No such file or directory
+***************************************************

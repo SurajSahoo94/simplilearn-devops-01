@@ -1,0 +1,53 @@
+Awk Introduction and Printing Operations
+
+Awk is a programming language which allows easy manipulation of structured data and the generation of formatted reports. Awk stands for the names of its authors “Aho, Weinberger, and Kernighan”
+
+The Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that matches with the specified patterns and then perform associated actions.
+
+Some of the key features of Awk are:
+
+    Awk views a text file as records and fields.
+    Like common programming language, Awk has variables, conditionals and loops
+    Awk has arithmetic and string operators.
+    Awk can generate formatted reports
+
+Awk reads from a file or from its standard input, and outputs to its standard output. Awk does not get along with non-text files.
+
+NAME
+       gawk - pattern scanning and processing language
+
+SYNOPSIS
+       gawk [ POSIX or GNU style options ] -f program-file [ -- ] file ...
+       gawk [ POSIX or GNU style options ] [ -- ] program-text file ...
+
+       pgawk [ POSIX or GNU style options ] -f program-file [ -- ] file ...
+       pgawk [ POSIX or GNU style options ] [ -- ] program-text file ...
+
+cat > awk.txt
+
+Keshav 	 Manager 	 Sales 	         $4,000
+Jack	 Developer 	 Technology 	 $6,500
+Jessi 	 Sysadmin 	 Technology 	 $8,000
+Rose 	 Manager 	 Marketing 	 $2,500
+Ram 	 DBA 	 	 Technology 	 $9,000
+
+cat awk.txt
+awk {print} awk.txt
+awk {'print;'} awk.txt
+awk '{print;}' awk.txt
+awk '/Jason/' awk.txt
+awk '/Jason/ > /Nisha/' awk.txt
+awk awk.txt
+awk '{print $1,$2}' awk.txt
+awk '{print $1,$2,$4}' awk.txt
+awk '{print $1,$2,$4;}' awk.txt
+awk '{print $1,$NF;}' awk.txt
+awk '{print}' awk.txt
+awk 'BEGIN {print "Name\tDesignation\tDepartment\tSalary";}
+awk 'BEGIN {print "Name\tDesignation\tDepartment\tSalary";}' awk.txt
+awk '$1 >300' awk.txt
+awk '$1 <300' awk.txt
+awk '$4 ~/Technology/' awk.txt
+awk 'BEGIN { count=0;} $3 ~ /Technology/ { count++; } END { print "Number of employees in Technology Dept =",count;}' awk.txt
+
+***********************************************************************

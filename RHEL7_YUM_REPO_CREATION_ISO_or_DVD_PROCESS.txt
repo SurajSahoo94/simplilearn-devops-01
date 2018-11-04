@@ -1,0 +1,129 @@
+Creating YUM Repository locally:
+********************************
+
+In Linux Distro's: Like :
+
+1. Redhat 4.x / 5.x / 6.x & 7.x 
+2. CentOS 4.x / 5.x / 6.x & 7.x 
+3. etc..
+
+# Check the ip address:
+
+# ifconfig   or # ip a
+
+Note: If you see no ip is assigned to the eno16777737 interface,
+then we have to bring the eno16777737 interface.
+
+# nmcli con up eno16777737
+
+[root@KeshavKummari ~]# ifconfig
+eno16777736: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.234.136  netmask 255.255.255.0  broadcast 192.168.234.255
+
+------------------------------------------------------------
+
+Step 1: Now, check the mounted dvd or iso details in the server:
+
+[root@KeshavKummari ~]# df -TH
+If it is not showing, 
+then >> go to >> vmware >> settings >> cd/dvd >> add iso
+
+After adding iso then check the details and mount as below:
+[root@KeshavKummari ~]# df -TH
+
+[root@KeshavKummari ~]# mount /dev/cdrom /mnt/
+mount: /dev/sr0 is write-protected, mounting read-only
+------------------------------------------------------------
+
+Step 2: Now, create directory :
+
+[root@KeshavKummari ~]# mkdir /rhel7
+
+------------------------------------------------------------
+
+Step 3: Now, go to mounted directory:
+
+[root@KeshavKummari ~]# cd /mnt//rhel7/Packages/
+
+Copy the files from /mnt//rhel7/Packages/* to "/rhel7" directory:
+
+Note: * means all files
+
+[root@KeshavKummari Packages]# cp -prv * /rhel7/   
+
+Cross check the size of the copied files:
+
+[root@KeshavKummari Packages]# du -sh /rhel7/
+3.1G    /rhel7/
+------------------------------------------------------------
+
+Step 4: Go to mounted path "/mnt/repodata/" and copy a file "76a190afa1c59e14d3a03f9b03c3eee31df0099f1193528ebb87d4d493d2b686-comps-Server.x86_64.xml /rhel7/comps-Server.x86_64.xml" to "/rhel7":
+
+Step 5: Copy a file from "/rhel7/repodata/" and rename as below in "rhel7":
+[root@KeshavKummari mnt]# cp -pv /mnt/repodata/76a190afa1c59e14d3a03f9b03c3eee31df0099f1193528ebb87d4d493d2b686-comps-Server.x86_64.xml /rhel7/comps-Server.x86_64.xml
+------------------------------------------------------------
+
+Step 6: Now, we need to install "createrepo" package.
+
+Search below ".rpm" in "/rhel7/" directory:
+
+ls -l deltarpm-3.6-3.el7.x86_64.rpm
+ls -l python-deltarpm-3.6-3.el7.x86_64.rpm
+ls -l createrepo-0.9.9-23.el7.noarch.rpm
+
+Now, we need to install above 3 ".rpm" packages:
+
+[root@KeshavKummari rhel7]# rpm -ivh deltarpm-3.6-3.el7.x86_64.rpm
+warning: deltarpm-3.6-3.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID fd431d51: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:deltarpm-3.6-3.el7               ################################# [100%]
+
+[root@KeshavKummari rhel7]# rpm -ivh python-deltarpm-3.6-3.el7.x86_64.rpm
+warning: python-deltarpm-3.6-3.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID fd431d51: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:python-deltarpm-3.6-3.el7        ################################# [100%]
+
+[root@KeshavKummari rhel7]# rpm -ivh createrepo-0.9.9-23.el7.noarch.rpm
+warning: createrepo-0.9.9-23.el7.noarch.rpm: Header V3 RSA/SHA256 Signature, key ID fd431d51: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:createrepo-0.9.9-23.el7          ################################# [100%]
+
+-------------------------------------------------------------------------
+Step 7: Create the repo database:
+
+[root@KeshavKummari rhel7]# createrepo -vg comps-Server.x86_64.xml /rhel7/
+-------------------------------------------------------------------------
+
+Step 8: Now, go to following path "/etc/yum.repos.d/", 
+and create a file and add the details as below: 
+
+# vim test.repo
+
+[rhel7_dvd]
+name=test.repo
+baseurl=file:///rhel7/
+gpgcheck=0
+enable=1
+------------------------------------------------------------
+Step 9: Now, check the "yum" configuration:
+
+[root@KeshavKummari ~]# yum clean all
+
+[root@KeshavKummari ~]# yum group list
+
+Try to install any one package and cross check your yum configuration:
+
+[root@KeshavKummari ~]# yum install telnet* -y
+------------------------------------------------------------
+
+Note: If you have installed the CUI server, then we need to install "GUI" packages:
+
+[root@KeshavKummari ~]# yum group list 
+
+[root@KeshavKummari ~]# yum group install "Server with GUI" -y 
+
+Now, restart the server, then your PC will load in GUI mode.
+------------------------------------------------------------

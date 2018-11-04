@@ -1,0 +1,55 @@
+Job Automation:
+***************
+Cron : Chronography is a time-based job scheduler in Unix/Linux
+It is a program that enables users to execute commands or scripts
+(group of commands) automatically at a specified time/date.
+
+Crontab configuration:
+To check the crontab service:
+
+# yum install crond* 
+
+# service crond status
+
+# systemctl status crond.service
+
+# Crontab configuration:
+
+   * * * * * <command or script_name>
+* = Minutes (0-59)
+* = Hour    (0-23)
+* = Date of the Month (1-31)
+* = Month of the year (1-12)
+* = Day of the week(0-6) Where "0" represents Sunday.
+
+Example:
+30 3 7 3 1 cp /root/chetan.txt /opt/chetan.txt
+
+To check the scheduled cron jobs:
+
+# crontab -l
+
+To edit or modify the jobs in crontab:
+
+# crontab -e
+********************************************************
+Example:
+
+mysql
+
+application log:
+/var/log/mysql.log
+
+Script path:
+/opt/orange/scripts/
+mysql_test_users.sh
+
+Cronjob log:
+/var/log/mysql/cronlog
+
+Crontab -l
+#*/5 * * * * sh /opt/orange/scripts/mysql_test_users.sh >> /var/log/mysql/cronlog
+*/5  * * * * service mysqld status >> /var/log/mysql/cronlog
+*/8 * * * * service mysqld start  >> /var/log/mysql/cronlog
+*/10   * * * * service mysqld stop   >> /var/log/mysql/cronlog
+********************************************************

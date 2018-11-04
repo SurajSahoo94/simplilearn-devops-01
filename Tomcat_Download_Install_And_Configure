@@ -1,0 +1,42 @@
+Step-1:
+
+# wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.33/bin/apache-tomcat-8.5.33.tar.gz
+
+Step-2:
+# tar xvzf apache-tomcat-8.5.32.tar.gz
+
+Step-3:
+# mv apache-tomcat-8.5.32 tomcat
+
+Step-4:
+# vim webapps/host-manager/META-INF/context.xml
+
+# grep -H -n "|.*" webapps/host-manager/META-INF/context.xml
+webapps/host-manager/META-INF/context.xml:20:         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|.*" />
+
+# vim webapps/manager/META-INF/context.xml
+
+# grep -H -n "|.*" webapps/manager/META-INF/context.xml
+webapps/manager/META-INF/context.xml:20:         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|.*" />
+
+Step-5:
+
+# cd conf
+
+# vim tomcat-users.xml
+
+# grep -H -n 'admin' tomcat-users.xml
+tomcat-users.xml:44:  <role rolename="admin-gui"/>
+tomcat-users.xml:45:  <role rolename="admin-manager"/>
+tomcat-users.xml:46:  <role rolename="admin-scripts"/>
+tomcat-users.xml:47:  <user username="admin" password="redhat@123" roles="admin-gui,admin-manager,admin-scripts"/>
+
+Step-6: 
+
+# cd ../bin
+
+# ./startup.sh
+
+Step-7:
+
+http://18.207.144.78:8080/

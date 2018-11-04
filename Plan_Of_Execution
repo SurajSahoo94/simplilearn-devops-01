@@ -1,0 +1,53 @@
+Proof Of Concept(POC) : Java CI/CD Pipeline
+
+Below are the required tools and softwares were used part of CI/CD Pipeline.
+
+#-----------------------------------------------------------------------#
+For Coding 						 : Spring Tool Suit(STS)
+#-----------------------------------------------------------------------#
+Text Editor 					 : ATOM
+#-----------------------------------------------------------------------#
+Planning & Tracking 			 : Trello
+#-----------------------------------------------------------------------#
+Code Repository & Version Control: Gitlab
+#-----------------------------------------------------------------------#
+Build Tool 						: Apache Maven
+#-----------------------------------------------------------------------#
+Continuous Integration  		: Jenkins
+#-----------------------------------------------------------------------#
+Package Repository              : JFrog
+#-----------------------------------------------------------------------#
+Configuration Management        : Puppet
+#-----------------------------------------------------------------------#
+Automation Unit Testing         : JUnit
+#-----------------------------------------------------------------------#
+Cloud Environments              : AWS
+#-----------------------------------------------------------------------#
+Monitoring & Measurement        : Nagios
+#-----------------------------------------------------------------------#
+
+#-----------------------------------------------------------------------#
+Practical Steps:
+#-----------------------------------------------------------------------#
+
+Cloud Environments   :  AWS
+
+STEP-1  : Launch a Linux Server
+STEP-2  : Do SSH from Windows/MacOS
+STEP-3  : Check Java Version and Download, Install & Configure Java Environment Variables
+STEP-4  : Download, Install & Configure vim, unzip, wget, elinks etc.. 
+STEP-5  : Download, Install & Configure Maven
+STEP-6  : Configure Maven Environment Variables
+STEP-7  : Download the Sample Java Project from https://start.spring.io/ 
+STEP-8  : Download, Install & Configure STS
+STEP-9  : Import Java project in STS 
+STEP-10 : Do Server Side Scripting & Client Side Scripting
+STEP-11 : Upload the Java Code to Github Repository
+STEP-12 : Download, Install & Configure Tomcat on EC2 instance
+STEP-13 : Download Jenkins .jar or .war file and Deploy in Tomcat 
+STEP-14 : Download, Install & Configure JFrog on EC2 instance
+STEP-15 : Download, Install & Configure Sonarqube on EC2 instance
+STEP-16 : Signup with Trello and Create Project Backlog
+STEP-17 : Download, Install & Configure Puppet on EC2 instance 
+STEP-18 : Download, Install & Configure Nagios on EC2 instance
+#-----------------------------------------------------------------------#

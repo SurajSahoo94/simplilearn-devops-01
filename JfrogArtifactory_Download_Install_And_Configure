@@ -1,0 +1,60 @@
+# wget https://api.bintray.com/content/jfrog/artifactory/jfrog-artifactory-oss-$latest.zip;bt_package=jfrog-artifactory-oss-zip
+# cp -pv /home/ec2-user/jfrog-artifactory-oss-6.1.0.zip .
+
+or 
+
+# wget https://s3.amazonaws.com/kkummari/jfrog-artifactory-oss-6.1.0.zip
+
+# unzip jfrog-artifactory-oss-6.1.0.zip
+
+# mv artifactory-oss-6.1.0/ artifactory
+
+# /opt/artifactory/bin
+
+# sudo ./installService.sh
+
+# sudo systemctl start artifactory.service
+
+# sudo systemctl status artifactory.service
+
+# http://18.207.144.78:8081/
+
+User Name : admin
+Password  : password [Change the default password]
+
+#------------- Download, Install & Configure Jfrog Artifactory on Ubuntu --------------#
+
+# wget https://api.bintray.com/content/jfrog/artifactory/jfrog-artifactory-oss-$latest.zip;bt_package=jfrog-artifactory-oss-zip
+
+Copy from WinScp or FileZill from Local Machine to Linux Server 
+# sudo cp -pv /home/ubuntu/jfrog-artifactory-oss-6.1.0.zip .
+
+or
+
+# wget https://s3.amazonaws.com/kkummari/jfrog-artifactory-oss-6.1.0.zip
+
+# apt install unzip 
+
+# unzip jfrog-artifactory-oss-6.1.0.zip
+
+# mv artifactory-oss-6.1.0/ artifactory
+
+# cd /opt/artifactory/bin
+
+# ./installService.sh
+
+# systemctl start artifactory.service
+
+# systemctl status artifactory.service
+
+# sudo systemctl status artifactory.service
+
+# http://18.207.144.78:8081/
+
+User Name : admin
+Password  : password [Change the default password]
+
+# http://<ipaddress>:8081/
+
+User Name : admin
+Password  : password [Change the default password]

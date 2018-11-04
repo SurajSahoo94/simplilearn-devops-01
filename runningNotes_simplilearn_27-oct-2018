@@ -1,0 +1,196 @@
+
+DevOps Roadmap :
+
+1. Programming : Java or Python 
+
+2. Administration : Windows, Linux or Unix 
+	1. Download,
+	2. Install,
+	3. Configure
+	4. Backup & Recovery
+	5. Troubleshooting
+	6. User & Group Mgmt
+	7. Other servicess...
+
+3. Networking & Security
+
+4. Infrastructure as a code :
+
+5. CI/CD Pipeline
+
+6. Monitoring 
+
+7. Cloud : AWS , Azure & GCP
+
+#-------------------------------------------------#
+
+Client : KK  (15th Nov 2018 with minimal features)
+
+Online Website 
+
+N Of Business : e-marketing
+
+
+Software Development Companies :
+
+
+Simplilearn : 
+
+Project : KK
+
+DevOps Team
+1. Developers		: 5
+2. QA			    : 5
+3. Admins			: 5
+4. DBA			    : 5
+5. Operations		: 6
+
+
+SDLC : Agile 
+
+Agile Scrum Rituals :
+
+1. Sprint Planning  :  2-4 weeks (2-weeks) 
+2. Daily Standup
+3. Refinement
+4. Retrospective
+5. Review/Demo & End the Sprint
+
+Domain Name : kk.com
+
+1. Product Owner >>>>> Client/Customer/Business
+2. Scrum Master  
+
+Product Backlogs : 
+
+1. UI(Home, Services, Contact Us, About US)
+2. Register 
+3. Signup
+4. Logo
+5. API integration
+
+Sprint Backlogs:
+
+1. UI(Home, Services, Contact Us, About US)  200 hrs  | 4 UI Developers | 2 stories 1=8 2*8=16hrs
+2. Login 
+3. Signup
+
+#-------------------------------------------#
+
+1. Code Repository & Version Control : GitHub, GitLab, BitBucket & SVN
+
+2. Build Tools : Maven 
+
+3. Binary Artifactory : Nexus, Jfrog 
+
+4. Code Quality : SonarQube
+
+5. Security Testing : Fortify
+
+6. Functional Testing : Selinum 
+
+7. Continuous Integration : Jenkins
+
+8. Configuration Management : Ansible, Chef, Puppet 
+
+9. Log Management & Analysis and Monitoring : Nagios, Splunk, ELK
+
+10. Virtualization : Vagrant
+
+11. Containerization : Docker
+
+12. Containerziation Orac : Kuberneties
+
+#-------------------------------------------#
+
+7 C's of DevOps :
+
+1. Continuous Business Planning 
+
+2. Collebrative Development
+
+3. Continuous Integration
+
+4. Continuous Testing
+
+5. Continuous Delivery & Deployment
+
+6. Continuous Mornitoring
+
+7. Continuous Feedback
+
+
+
+Agile way of working : Scrum Rituals 
+
+
+CI/CD Pipeline 
+
+
+
+
+Step-1 : 
+
+MacBookPro
+
+Dual Booting
+
+Step-2: 
+
+Virtualization :
+
+1. Vmware : Workstation (paid version)
+
+2. Oracle : Virtualbox (Open Source)
+
+Virtualbox :
+1. Linux (Open Source)
+2. Windows (Paid) : 30-days Free (750Hrs per month under EC2)
+3. Unix  (Paid)
+4. MacOS (Paid)
+
+Step-3 :
+
+Cloud : AWS, Azure, GCP
+
+
+
+
+
+
+
+System : 
+
+1. Laptop  : OS(Windows|MacOS|Linux)
+
+2. Desktop : OS(Windows|MacOS|Linux)
+
+Account : 
+
+Cloud : AWS()
+
+Software List :
+
+1. SSH Tools : 
+
+	1. gitbash
+	2. cmder
+	3. WinScp/FileZilla
+
+2. Text Editors : 
+	1. Notepad++
+	2. Sublime
+	3. ATOM
+	4. Intellij
+
+3. Python 3.7.0
+	1. pip 
+
+4. aws cli 
+
+5. Virtualization : Oracle Virtualbox 
+
+Lab : 
+
+
+

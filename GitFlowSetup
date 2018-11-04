@@ -1,0 +1,66 @@
+#------------- Setup SSH for GitHub for user(i.e. root) on Linux Distribution-----------------#
+
+# ssh-keygen 
+
+# eval "$(ssh-agent -s)"
+Agent pid 2153
+
+# ssh-add -k ~/.ssh/id_rsa
+Identity added: /home/ubuntu/.ssh/id_rsa (/home/ubuntu/.ssh/id_rsa)
+
+# ssh -T git@github.com
+
+# git config --global user.name "root"
+
+# git config --global user.email "keshav.kummari@gmail.com"
+
+
+#-------Clone or Download the Java Code Repository and execute maven jobs-----#
+
+# git clone https://github.com/keshavkummari/devops.git
+
+# cd devops
+
+# mvn clean
+
+# mvn help:describe
+
+# mvn help:describe -DgroupId=org.apache.maven.plugins -DartifactId=maven-help-plugin
+
+# mvn clean package deploy
+
+Build Path : /root/.m2/repository/com/example/devops/
+#----------------------------------------------------------------------------#
+
+#------------- Setup SSH for GitHub for user(Jenkins) on Linux Distribution--------------#
+
+# ssh-keygen 
+
+# eval "$(ssh-agent -s)"
+Agent pid 2153
+
+# ssh-add -k ~/.ssh/id_rsa
+Identity added: /home/ubuntu/.ssh/id_rsa (/home/ubuntu/.ssh/id_rsa)
+
+# ssh -T git@github.com
+
+# git config --global user.name "jenkins"
+
+# git config --global user.email "keshav.kummari@gmail.com"
+
+#-------Clone or Download the Java Code Repository and execute maven jobs-----#
+
+# git clone https://github.com/keshavkummari/devops.git
+
+# cd devops
+
+# mvn clean
+
+# mvn help:describe
+
+# mvn help:describe -DgroupId=org.apache.maven.plugins -DartifactId=maven-help-plugin
+
+# mvn clean package deploy
+
+Build Path : /var/lib/jenkins/.m2/repository/com/example/devops/
+#----------------------------------------------------------------------------#

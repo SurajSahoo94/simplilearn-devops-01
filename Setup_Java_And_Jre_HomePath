@@ -1,0 +1,100 @@
+#--Download,Install,Configure Java 1.8 & Jre on CENTOS/RHEL/AMAZON LINUX--#
+
+STEP-1 : Check the Java Version
+
+# java -version
+
+STEP-2 : Remove the older version of Java i.e. 1.7
+
+# yum remove java
+
+STEP-3 : Download, Install & Configure java 1.8 
+
+# yum install java-1.8* -y
+
+STEP-4 : Check the Java Version
+
+# java -version
+
+STEP-5 : Setup Java Home Path & Configure for all users
+
+#-----------Ignore-----------------------#
+
+# vi /etc/environment  # vi /etc/bashrc or # vi /etc/profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/"
+export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre/bin
+
+# source /etc/environment
+
+#-----------Execute Below-----------------------#
+
+# cat /root/.bash_profile & /home/ec2-user/.bash_profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/"
+export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre/bin
+
+# source /root/.bash_profile 
+# source /home/ec2-user/.bash_profile
+
+
+#-----------Execute Below-----------------------#
+
+# cat /etc/bashrc & /etc/profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/"
+export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre/bin
+
+# source /etc/profile 
+# source /etc/bashrc
+#-----------------------------------------------#
+
+STEP-6 : Check the Java version using Admin User: 
+
+[root@ip-172-31-28-116 ~]# java -version
+openjdk version "1.8.0_171"
+OpenJDK Runtime Environment (build 1.8.0_171-b10)
+OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)
+[root@ip-172-31-28-116 ~]# exit
+
+[root@ip-172-31-28-116 ~]# echo $JAVA_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+
+STEP-7 : Check the Java version using Normal user :
+
+[ec2-user@ip-172-31-28-116 ~]$ java -version
+openjdk version "1.8.0_171"
+OpenJDK Runtime Environment (build 1.8.0_171-b10)
+OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)
+
+[ec2-user@ip-172-31-28-116 ~]$ echo $JAVA_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+#-------------------------------------------------------------------#
+
+#-------Download,Install,Configure Java 1.8 on Ubuntu LINUX---------#
+
+# sudo apt-get update
+
+Optional :
+# sudo apt-get install default-jre
+# sudo apt-get install default-jdk
+
+# sudo add-apt-repository ppa:webupd8team/java
+# sudo apt-get update
+# sudo apt-get install oracle-java8-installer
+
+# sudo update-alternatives --config java
+
+# sudo vi /etc/environment
+JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+
+# source /etc/environment
+
+# echo $JAVA_HOME
+#-------------------------------------------------------------------#

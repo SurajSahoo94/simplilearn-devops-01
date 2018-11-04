@@ -1,0 +1,140 @@
+
+#--------------------------------------------#
+Agile Scrum Rituals :
+
+1. Sprint Planning
+2. Daily Standup
+3. Refinement
+4. Retrospective
+5. Review, Demo & End the Iteration(Sprint End)
+#--------------------------------------------#
+Team Details:
+#--------------------------------------------#
+1. Product Owner
+2. Scrum Master
+3. DevOps Team
+
+Optional:
+4. Business/Stakeholders/Customer
+
+#--------------------------------------------#
+Boad Columns Details:
+#--------------------------------------------#
+
+Product Backlogs
+Sprint Backlogs
+To Do 
+In Progress
+Review
+Impediment
+Done
+#--------------------------------------------#
+
+#--------------------------------------------#
+Product Backlogs :
+#--------------------------------------------#
+
+1. Scrum Board Account Creation
+2. Code Repository Account Creation
+3. AWS Account Creation
+4. Spinup/Launch a Linux Server Part of AWS Cloud 
+5. Spinup/Launch a Windows Server Part of AWS Cloud  
+6. Do SSH to Linux Server from Windows/MacOS 
+7. Do RDP to Windows Server from Windows/MacOS
+8. Download, Install & Configure SSH Tools on Windows(on AWS Cloud)
+9. Download, Install & Configure Text Tools on Windows(on AWS Cloud)
+10. Download, Install & Configure Python, Pip, AWSCLI Tools on Windows(on AWS Cloud)
+11. History and Distributions of OS
+12. Unix/Linux Basic Commands
+13. Unix/Linux Advanced Commands
+14. Unix/Linux User Management 
+15. Unix/Linux Group Management
+16. Unix/Linux Package Management
+17. Unix/Linux Controlling Services and Daemons
+18. Unix/Linux Analyzing and Storing Logs
+19. Unix/Linux Run Levels
+20. Unix/Linux Process Management and Job Management
+21. Unix/Linux Permissions
+22. Unix/Linux Backup & Recovery 
+
+#--------------------------------------------#
+Sprint Backlogs :
+
+Sprint_01(4 hrs i.e. 7:30pm to 11:30pm):
+#--------------------------------------------#
+
+1. Scrum Board Account Creation
+2. Code Repository Account Creation
+3. AWS Account Creation
+4. Spinup/Launch a Linux Server Part of AWS Cloud 
+5. Spinup/Launch a Windows Server Part of AWS Cloud  
+6. Do SSH to Linux Server from Windows/MacOS 
+7. Do RDP to Windows Server from Windows/MacOS
+8. Download, Install & Configure SSH Tools on Windows(on AWS Cloud)
+9. Download, Install & Configure Text Tools on Windows(on AWS Cloud)
+10. Download, Install & Configure Python, Pip, AWSCLI Tools on Windows(on AWS Cloud)
+11. History and Distributions of OS
+12. Unix/Linux Basic Commands
+13. Unix/Linux Advanced Commands
+14. Unix/Linux User Management 
+15. Unix/Linux Group Management
+16. Unix/Linux Package Management
+#--------------------------------------------#
+
+#--------------------------------------------#
+Agile & Scrum Board 
+#--------------------------------------------#
+
+Trelo: https://trello.com/
+
+#--------------------------------------------#
+Cloud AWS Account 
+#--------------------------------------------#
+
+https://aws.amazon.com/
+
+#--------------------------------------------#
+Code Repository Account Creation
+#--------------------------------------------#
+
+GitHub : https://github.com/
+#--------------------------------------------#
+
+#--------------------------------------------#
+Online AWS Architecture Diagram Tool
+#--------------------------------------------#
+
+https://online.visual-paradigm.com/features/aws-architecture-diagram-tool/
+
+https://cloudcraft.co/
+#--------------------------------------------#
+
+
+ls -lrt 
+
+-      rw-     r--     r--@ 1 keshavkummari  staff  1692 Oct 28 20:16 linux_aws.pem
+ 
+File   User    Group   Other
+
+# chmod 400 linux_aws.pem
+
+Absolute way of changing the permissions
+
+0		:  - 	No Permission
+1		:  x    Executetable permission
+2		:  w    Write
+3		:  x+w  Execute + Write 1+2=3
+4		:  r    read
+5		:  r+x  read + execute 4 + 1 = 5
+6       :  r+w  read + write   4 + 2 = 6
+7       :  r+w+x read + write + execute  4 + 2 + 1 = 7
+
+-      r+w+-     ---       ---      @ 1 keshavkummari  staff  1692 Oct 28 20:16 linux_aws.pem
+       4+0+0=4   0+0+0=0   0+0+0 = 0
+
+       4         0         0
+ # chmod 400 linux_aws.pem
+
+ # chmod 777 linux_aws.pem
+
+

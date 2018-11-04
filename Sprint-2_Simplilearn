@@ -1,0 +1,100 @@
+#--------------------------------------------#
+Agile Scrum Rituals :
+#--------------------------------------------#
+1. Sprint Planning
+2. Daily Standup
+3. Refinement
+4. Retrospective
+5. Review, Demo & End the Iteration(Sprint End)
+#--------------------------------------------#
+Team Details:
+#--------------------------------------------#
+1. Product Owner
+2. Scrum Master
+3. DevOps Team
+
+Optional:
+4. Business/Stakeholders/Customer
+
+#--------------------------------------------#
+Product Backlogs :
+#--------------------------------------------#
+
+1. Agile and DevOps: How do they inter-relate?
+2. An understanding of DevOps
+3. An understanding of the technical challenges in DevOps
+4. An understanding of security issues
+5. An understanding of the difference between requirements and architecture
+6. How to write user acceptance tests
+7. How to manage change by setting up and using a source control system
+8. How to automate the process of assembling software components with build tools
+9. How to automate the building of the whole system with continuous integration tools
+10. The major differences between popular tools: CVS, SVN, and Git
+11. How to use Eclipse editor, Advantages of the Eclipse editor
+12. Code, Build, Package, Deploy and Monitor
+
+#--------------------------------------------#
+Sprint Backlogs :
+
+Sprint_02(4 hrs i.e. 7:30pm to 11:30pm):
+#--------------------------------------------#
+
+#--------------------------------------------#
+Creating a Java Project and Import part of IDE i.e. STS or Eclipse
+#--------------------------------------------#
+
+https://start.spring.io/
+
+Scrum Board 
+GitHub Account
+JDK Download
+Create GitHub Account
+Install GIT
+Install STS IDE
+Install Apache Maven
+Install Apache Tomcat
+Install JFrog Artifactory
+Install Jenkins
+Install Nagios
+Install Lightweight Text Editor ATOM
+
+#--------------------------------------------#
+Agile & Scrum Board 
+#--------------------------------------------#
+
+Trelo: https://trello.com/
+
+#--------------------------------------------#
+Cloud AWS Account 
+#--------------------------------------------#
+
+https://aws.amazon.com/
+
+#--------------------------------------------#
+Code Repository Account Creation
+#--------------------------------------------#
+
+GitHub : https://github.com/
+#--------------------------------------------#
+
+#--------------------------------------------#
+Online AWS Architecture Diagram Tool
+#--------------------------------------------#
+
+https://online.visual-paradigm.com/features/aws-architecture-diagram-tool/
+
+https://cloudcraft.co/
+#--------------------------------------------#
+
+
+#!/bin/bash
+cd /opt/
+yum install wget* curl* vim* unzip* -y
+yum update -y
+wget https://www.free-css.com/assets/files/free-css-templates/download/page231/bizexpress-v1.0.1.zip
+unzip *.zip
+cd Biz*
+yum install http* --skip-broken -y
+mv * /var/www/html/
+service httpd start
+# systemct start httpd.service

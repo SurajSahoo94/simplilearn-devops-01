@@ -1,0 +1,64 @@
+#-----Download,Install,Configure Maven 3.5.4 on CENTOS/RHEL/AMAZON/Ubuntu LINUX--------------------#
+STEP-1 : Go to /opt directory & Download Apache Maven 
+# cd /opt
+
+# wget http://www-us.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip
+
+STEP-2 : Unzip 
+
+# unzip apache-maven-3.5.4-bin.zip
+
+STEP-3 : Rename 
+
+# mv apache-maven-3.5.4 maven
+
+#--------------Ignore-----------------------------#
+STEP-4 : Add Maven Home Path in /etc/environment file.
+
+# cat /etc/environment
+
+export MAVEN_HOME=/opt/maven/
+export M2_HOME=$MAVEN_HOME/bin
+export PATH=$PATH:$MAVEN_HOME/bin
+
+STEP-5 : Execute the configuration file:
+
+# source /etc/environment
+#--------------------------------------------------------#
+
+STEP-4 : Add Maven Home Path in /root/.bash_profile & /home/ec2-user/.bash_profile file.
+
+# cat /root/.bash_profile  
+# cat /home/ec2-user/.bash_profile
+
+export MAVEN_HOME=/opt/maven/
+export M2_HOME=$MAVEN_HOME/bin
+export PATH=$PATH:$MAVEN_HOME/bin
+
+STEP-5 : Execute the configuration file:
+
+# source /root/.bash_profile 
+# source /home/ec2-user/.bash_profile
+
+STEP-6 : Check the Apache Maven Version
+
+# mvn -version
+Apache Maven 3.5.4 (1edded0938998edf8bf061f1ceb3cfdeccf443fe; 2018-06-17T18:33:14Z)
+Maven home: /opt/maven
+Java version: 1.8.0_171, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.14.47-56.37.amzn1.x86_64", arch: "amd64", family: "unix"
+
+#---------------------Ubuntu Steps-----------------------------------------#
+
+# sudo apt install maven
+update-alternatives: using /usr/share/maven/bin/mvn to provide /usr/bin/mvn (mvn) in auto mode
+
+cat /etc/environment
+MAVEN_HOME=/usr/share/maven/
+M2=$MAVEN_HOME/bin
+
+# source /etc/environment
+# mvn -version
+
+#--------------------------------------------------------------------------------------#

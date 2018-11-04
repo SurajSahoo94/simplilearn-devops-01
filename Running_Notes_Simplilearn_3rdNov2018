@@ -1,0 +1,246 @@
+
+#------------------------------------------------------#
+
+Domain Name : keshavkummari.com(Godaddy.com)
+
+AWS - VPC (kk_vpc)  (vpc-0c372710319b4e271 | kk_vpc)
+
+	1. IGW (igw-039374a2c3869bb18)
+	2. RTB (2 rtb i.e. 1 public & 1 private rtb)
+	3. Subnets (6 subnets, i.e. 2 Public Facing, 4 Private Facing subnets)
+	4. NACLS
+	5. Security Groups
+	6. NAT Gateway
+	7. Bastion 
+	8. ELB 
+	9. LC 
+	10. AutoScaling
+	11. Download, Install & Configure Java & Maven on Linux 
+	12. Application Server Apache Tomcat
+	13. Binaray Artifactory i.e. Jfrog
+	14. Continuous Integration i.e. Jenkins
+	15. Gitflow
+#------------------------------------------------------#
+
+LC : 
+
+1. OS Type : Linux
+
+2. Distribution : Amazon Linux 
+
+3. Instance Type : t2.micro, CPU-1, RAM-1GB & EBS
+
+4. Storage :
+
+5. Security Group : 
+
+
+#------------------------------------------------------#
+
+
+Windows/MacOS : Virtualization : Oracle Virtualbox >> Linux Server 
+
+Step-1 : hostname (dev.cloudcicd.org)
+
+# hostnamectl set-hostname "dev.cloudcicd.org"
+
+Redhat 7.5 : 
+
+Package Management : rpm & yum
+
+rpm -ivh abc.rpm 
+
+yum install java-1.8* -y
+
+vi /etc/profile
+
+# Java Home path :
+
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64/"
+export  JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64/jre/"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64/jre/bin
+
+source /etc/profile
+
+# echo $JAVA_HOME
+# echo $JRE_HOME
+
+# java -verison
+
+#------------------------------------------------------#
+
+#--Download,Install,Configure Java 1.8 & Jre on CENTOS/RHEL/AMAZON LINUX--#
+
+STEP-1 : Check the Java Version
+
+# java -version
+
+STEP-2 : Remove the older version of Java i.e. 1.7
+
+# yum remove java
+
+STEP-3 : Download, Install & Configure java 1.8 
+
+# yum install java-1.8* -y
+
+STEP-4 : Check the Java Version
+
+# java -version
+
+STEP-5 : Setup Java Home Path & Configure for all users
+
+#-----------Ignore-----------------------#
+
+# vi /etc/environment  # vi /etc/bashrc or # vi /etc/profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/"
+export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre/bin
+
+# source /etc/environment
+
+#-----------Execute Below-----------------------#
+
+# cat /root/.bash_profile & /home/ec2-user/.bash_profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/"
+export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre/bin
+
+# source /root/.bash_profile 
+# source /home/ec2-user/.bash_profile
+
+
+#-----------Execute Below-----------------------#
+
+# cat /etc/bashrc & /etc/profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/"
+export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre/bin
+
+# source /etc/profile 
+# source /etc/bashrc
+#-----------------------------------------------#
+
+STEP-6 : Check the Java version using Admin User: 
+
+[root@ip-172-31-28-116 ~]# java -version
+openjdk version "1.8.0_171"
+OpenJDK Runtime Environment (build 1.8.0_171-b10)
+OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)
+[root@ip-172-31-28-116 ~]# exit
+
+[root@ip-172-31-28-116 ~]# echo $JAVA_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+
+STEP-7 : Check the Java version using Normal user :
+
+[ec2-user@ip-172-31-28-116 ~]$ java -version
+openjdk version "1.8.0_171"
+OpenJDK Runtime Environment (build 1.8.0_171-b10)
+OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)
+
+[ec2-user@ip-172-31-28-116 ~]$ echo $JAVA_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/
+#-------------------------------------------------------------------#
+
+#-------Download,Install,Configure Java 1.8 on Ubuntu LINUX---------#
+
+# sudo apt-get update
+
+Optional :
+# sudo apt-get install default-jre
+# sudo apt-get install default-jdk
+
+# sudo add-apt-repository ppa:webupd8team/java
+# sudo apt-get update
+# sudo apt-get install oracle-java8-installer
+
+# sudo update-alternatives --config java
+
+# sudo vi /etc/environment
+JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+
+# source /etc/environment
+
+# echo $JAVA_HOME
+#-------------------------------------------------------------------#
+
+
+#------------------------------------------------------#
+Maven-Home-Path-Linux
+
+#-----Download,Install,Configure Maven 3.5.4 on CENTOS/RHEL/AMAZON/Ubuntu LINUX--------------------#
+STEP-1 : Go to /opt directory & Download Apache Maven 
+# cd /opt
+
+# wget http://www-us.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip
+
+STEP-2 : Unzip 
+
+# unzip apache-maven-3.5.4-bin.zip
+
+STEP-3 : Rename 
+
+# mv apache-maven-3.5.4 maven
+
+#--------------Ignore-----------------------------#
+STEP-4 : Add Maven Home Path in /etc/environment file.
+
+# cat /etc/environment
+
+export MAVEN_HOME=/opt/maven/
+export M2_HOME=$MAVEN_HOME/bin
+export PATH=$PATH:$MAVEN_HOME/bin
+
+STEP-5 : Execute the configuration file:
+
+# source /etc/environment
+#--------------------------------------------------------#
+
+STEP-4 : Add Maven Home Path in /root/.bash_profile & /home/ec2-user/.bash_profile file.
+
+# cat /root/.bash_profile  
+# cat /home/ec2-user/.bash_profile
+
+export MAVEN_HOME=/opt/maven/
+export M2_HOME=$MAVEN_HOME/bin
+export PATH=$PATH:$MAVEN_HOME/bin
+
+STEP-5 : Execute the configuration file:
+
+# source /root/.bash_profile 
+# source /home/ec2-user/.bash_profile
+
+STEP-6 : Check the Apache Maven Version
+
+# mvn -version
+Apache Maven 3.5.4 (1edded0938998edf8bf061f1ceb3cfdeccf443fe; 2018-06-17T18:33:14Z)
+Maven home: /opt/maven
+Java version: 1.8.0_171, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.38.amzn1.x86_64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.14.47-56.37.amzn1.x86_64", arch: "amd64", family: "unix"
+
+#---------------------Ubuntu Steps-----------------------------------------#
+
+# sudo apt install maven
+update-alternatives: using /usr/share/maven/bin/mvn to provide /usr/bin/mvn (mvn) in auto mode
+
+cat /etc/environment
+MAVEN_HOME=/usr/share/maven/
+M2=$MAVEN_HOME/bin
+
+# source /etc/environment
+# mvn -version
+
+#--------------------------------------------------------------------------------------#
+
+#------------------------------------------------------#
+
+
+
+

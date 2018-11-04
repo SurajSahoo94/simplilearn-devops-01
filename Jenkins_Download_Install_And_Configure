@@ -1,0 +1,42 @@
+Step-1: Installing from the Repo
+Now, run the following to download Jenkins from the Red Hat repo:
+
+# sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+
+Step-2: Then, import the verification key using the package manager RPM:
+
+# sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+Step-3: Start Jenkins as a service:
+# yum install jenkins
+
+# sudo systemctl enable jenkins.service
+# sudo systemctl start jenkins.service
+# sudo systemctl status jenkins.service
+
+Step-4: Jenkins UI : http://107.22.139.14:8080/
+
+Step-5 : Jenkins Password : 
+[root@ip-172-31-23-122 ~]# cat /var/lib/jenkins/secrets/initialAdminPassword
+2afdf970677c4926b21393c055f20a27
+
+Step-6 : http://107.22.139.14:8080/
+
+UserName : admin 
+PassWord : redhat@123
+
+#------------- Download, Install & Configure Jenkins on Ubuntu ------------#
+# sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+# sudo sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+# sudo apt-get update
+
+# sudo apt-get install jenkins
+
+# sudo vim /etc/default/jenkins
+/etc/sysconfig/jenkins in CentOS/RHEL or /etc/default/jenkins in Debian based distributions
+
+
+# sudo service jenkins start
+#--------------------------------------------------------------------------#
